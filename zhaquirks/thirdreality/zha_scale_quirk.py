@@ -1,3 +1,5 @@
+"""Third Reality Zigbee kitchen scale."""
+
 from typing import Final
 
 from zigpy.quirks import CustomCluster
@@ -13,9 +15,13 @@ from zigpy.zcl.foundation import (
 
 
 class ThirdRealityScaleCluster(CustomCluster):
+    """Third Reality kitchen scale private cluster."""
+
     cluster_id = 0xFF0C
 
     class AttributeDefs(BaseAttributeDefs):
+        """Attribute definitions for the scale cluster."""
+
         SCALE_VAL: Final = ZCLAttributeDef(
             id=0x0001,
             type=t.int16s,
@@ -68,6 +74,8 @@ class ThirdRealityScaleCluster(CustomCluster):
         super()._update_attribute(attrid, value)
 
     class ServerCommandDefs(BaseCommandDefs):
+        """Server command definitions for the scale cluster."""
+
         tare: Final = ZCLCommandDef(
             id=0x00,
             schema={},
