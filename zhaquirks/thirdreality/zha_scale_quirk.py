@@ -1,9 +1,9 @@
+from typing import Final
 
 from zigpy.quirks import CustomCluster
 from zigpy.quirks.v2 import QuirkBuilder
 import zigpy.types as t
 from zigpy.zcl import foundation
-from typing import Final
 from zigpy.zcl.foundation import (
     BaseAttributeDefs,
     BaseCommandDefs,
@@ -13,8 +13,7 @@ from zigpy.zcl.foundation import (
 
 
 class ThirdRealityScaleCluster(CustomCluster):
-
-    cluster_id = 0xff0c
+    cluster_id = 0xFF0C
 
     class AttributeDefs(BaseAttributeDefs):
         SCALE_VAL: Final = ZCLAttributeDef(
@@ -70,27 +69,32 @@ class ThirdRealityScaleCluster(CustomCluster):
 
     class ServerCommandDefs(BaseCommandDefs):
         tare: Final = ZCLCommandDef(
-            id=0x00, schema={},
+            id=0x00,
+            schema={},
             direction=foundation.Direction.Client_to_Server,
             is_manufacturer_specific=False,
         )
         start_report: Final = ZCLCommandDef(
-            id=0x01, schema={},
+            id=0x01,
+            schema={},
             direction=foundation.Direction.Client_to_Server,
             is_manufacturer_specific=False,
         )
         stop_report: Final = ZCLCommandDef(
-            id=0x02, schema={},
+            id=0x02,
+            schema={},
             direction=foundation.Direction.Client_to_Server,
             is_manufacturer_specific=False,
         )
         set_target_val: Final = ZCLCommandDef(
-            id=0x03, schema={"target_val": t.uint8_t},
+            id=0x03,
+            schema={"target_val": t.uint8_t},
             direction=foundation.Direction.Client_to_Server,
             is_manufacturer_specific=False,
         )
         convert_gram_to_pound_ounce: Final = ZCLCommandDef(
-            id=0x04, schema={},
+            id=0x04,
+            schema={},
             direction=foundation.Direction.Client_to_Server,
             is_manufacturer_specific=False,
         )
