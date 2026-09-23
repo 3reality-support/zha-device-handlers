@@ -3,24 +3,23 @@
 from typing import Final
 
 from zigpy.quirks import CustomCluster
-from zigpy.quirks.v2 import (
-    NumberDeviceClass,
-    QuirkBuilder,
-)
+from zigpy.quirks.v2 import QuirkBuilder
 import zigpy.types as t
-from zigpy.zcl.foundation import BaseAttributeDefs, ZCLAttributeDef
 from zigpy.zcl.clusters.general import LevelControl
+from zigpy.zcl.foundation import BaseAttributeDefs, ZCLAttributeDef
 
 
 class SirenLevelControl(CustomCluster, LevelControl):
     """Override Level Control:
-       1. Intercept write to current_level -> send move_to_level command
-       2. Only expose current_level attribute (hide on_level etc.)"""
+    1. Intercept write to current_level -> send move_to_level command
+    2. Only expose current_level attribute (hide on_level etc.)
+    """
 
     cluster_id = LevelControl.cluster_id  # 0x0008
 
     class AttributeDefs(BaseAttributeDefs):
         """Only expose current_level, hide all other Level Control attributes."""
+
         current_level: Final = ZCLAttributeDef(
             id=0x0000,
             type=t.uint8_t,
