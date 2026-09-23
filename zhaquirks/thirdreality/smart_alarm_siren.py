@@ -10,7 +10,8 @@ from zigpy.zcl.foundation import BaseAttributeDefs, ZCLAttributeDef
 
 
 class SirenLevelControl(CustomCluster, LevelControl):
-    """Override Level Control:
+    """Override Level Control.
+
     1. Intercept write to current_level -> send move_to_level command
     2. Only expose current_level attribute (hide on_level etc.)
     """
